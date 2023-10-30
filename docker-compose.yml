@@ -1,0 +1,16 @@
+version: "3"
+services:
+  php:
+    build: ./docker/php
+    volumes:
+      - .:/web
+    ports:
+      - 8000:8000
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+  vite:
+    build: ./docker/node
+    volumes:
+      - .:/web
+    ports:
+      - 5173:5173
+    user: "${DOCKER_UID}:${DOCKER_GID}"

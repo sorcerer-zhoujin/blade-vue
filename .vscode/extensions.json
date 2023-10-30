@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "vue.vscode-typescript-vue-plugin",
+    "vue.volar",
+    "onecentlin.laravel-blade",
+    "onecentlin.laravel5-snippets"
+  ]
+}
