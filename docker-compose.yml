@@ -1,16 +1,37 @@
 version: "3"
 services:
+  # Laravel
   php:
     build: ./docker/php
     volumes:
       - .:/web
+    user: ${DOCKER_UID}:${DOCKER_GID}
     ports:
       - 8000:8000
-    user: "${DOCKER_UID}:${DOCKER_GID}"
+  # 開発サーバー
   vite:
     build: ./docker/node
     volumes:
       - .:/web
+    user: ${DOCKER_UID}:${DOCKER_GID}
     ports:
       - 5173:5173
-    user: "${DOCKER_UID}:${DOCKER_GID}"
+  # DB
+  postgis:
+    image: postgis/postgis:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - ${DB_PORT}:5432
+  # DB管理用の WebUI
+  pgweb:
+    image: sosedoff/pgweb:latest
+    restart: always
+    environment:
+      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@postgis:${DB_PORT}/${DB_DATABASE}?sslmode=disable
+    depends_on:
+      - postgis
+    ports:
+      - 8081:8081
