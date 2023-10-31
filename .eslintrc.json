@@ -15,6 +15,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint", "vue"],
+  "ignorePatterns": ["node_modules/", "public/", "public/build/", "__tests__/"],
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
