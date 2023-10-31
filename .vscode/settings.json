@@ -9,9 +9,10 @@
   },
   "eslint.validate": [
     "javascript",
-    "javascriptvue",
+    "javascriptreact",
     "typescript",
-    "typescriptvue"
+    "typescriptreact",
+    "vue"
   ],
   "eslint.workingDirectories": ["./resources/js"]
 }

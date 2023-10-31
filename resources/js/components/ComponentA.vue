@@ -1,13 +1,3 @@
-<template>
-  <div>
-    <h1>Laravel10 + Vue3 Component Test</h1>
-    <button @click="fetchData">fetch</button>
-    <div v-if="data">
-      <pre>Message: {{ data.message }}</pre>
-    </div>
-  </div>
-</template>
-
 <script setup lang="ts">
 import axios from "axios";
 import { ref } from "vue";
@@ -27,3 +17,13 @@ const fetchData = async () => {
   }
 };
 </script>
+
+<template>
+  <div>
+    <h1>Laravel10 + Vue3 Component Test</h1>
+    <button @click="fetchData">fetch</button>
+    <div v-if="data">
+      <pre>Message: {{ data.message }}</pre>
+    </div>
+  </div>
+</template>
