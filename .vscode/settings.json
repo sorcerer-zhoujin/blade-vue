@@ -13,6 +13,5 @@
     "typescript",
     "typescriptreact",
     "vue"
-  ],
-  "eslint.workingDirectories": ["./resources/js"]
+  ]
 }
