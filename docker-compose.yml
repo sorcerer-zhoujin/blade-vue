@@ -19,7 +19,7 @@ services:
   # DB
   postgis:
     image: postgis/postgis:latest
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
@@ -28,9 +28,9 @@ services:
   # DB管理用の WebUI
   pgweb:
     image: sosedoff/pgweb:latest
-    restart: always
+    restart: unless-stopped
     environment:
-      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@postgis:${DB_PORT}/${DB_DATABASE}?sslmode=disable
+      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@postgis:5432/${DB_DATABASE}?sslmode=disable
     depends_on:
       - postgis
     ports:
