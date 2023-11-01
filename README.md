@@ -66,6 +66,12 @@
 1. ログを確認する方法
 
     ```bash
+    docker-compose logs -f
+    ```
+
+    もしくは
+
+    ```bash
     docker-compose logs -f <service_name>
     ```
 
