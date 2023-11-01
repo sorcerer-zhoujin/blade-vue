@@ -66,7 +66,7 @@
 1. ログを確認する方法
 
     ```bash
-    docker-compose logs -t <service_name>
+    docker-compose logs -f <service_name>
     ```
 
     *`<service_name>` は `docker-compose.yml` に記載しています*
