@@ -1,11 +1,85 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 開発環境の準備（Linux）
+
+**WSL2 もしくは Linuxシステムがお勧めです。以下、 Ubuntu 22.04 を使う前提での手順になります**
+
+### Node 20
+
+- Voltaの公式サイト: https://docs.volta.sh/guide/getting-started
+
+- Voltaで `node@20` をインストール
+  ```bash
+  volta install node@20
+  ```
+
+### PHP 8.2
+
+- インストール
+
+  ```bash
+  sudo apt install software-properties-common
+  sudo add-apt-repository ppa:ondrej/php
+
+  sudo apt update
+  sudo apt install -y php8.2
+  ```
+
+- `php -v` のアウトプットを確認
+
+  ```
+  PHP 8.2.12 (cli) (built: Oct 26 2023 17:33:49) (NTS)
+  Copyright (c) The PHP Group
+  Zend Engine v4.2.12, Copyright (c) Zend Technologies
+      with Zend OPcache v8.2.12, Copyright (c), by Zend Technologies
+  ```
+
+- アンインストール
+
+  ```bash
+  sudo apt autoremove php8*
+  ```
+
+### 環境変数の設定
+
+1. `.env.example` からコピー
+
+    ```bash
+    cp .env.example .env
+    ```
+
+1. `DOCKER_UID` と `DOCKER_GID` を作業中のUnixユーザーの情報に変更
+    ```bash
+    sed -i -E "s/DOCKER_UID=[0-9]+/DOCKER_UID=$(id -u)/g; s/DOCKER_GID=[0-9]+/DOCKER_GID=$(id -g)/g" .env
+    ```
+
+### Dockerコンテイナー
+
+1. 開発用サーバーの起動
+
+    ```bash
+    docker-compose up -d
+    ```
+
+    *※ `npm install` と `composer install` はコンテイナーの中から自動的に実行されます*
+
+1. ログを確認する方法
+
+    ```bash
+    docker-compose logs -t <service_name>
+    ```
+
+    *`<service_name>` は `docker-compose.yml` に記載しています*
+
+### Vue3 ビルド
+
+```bash
+npm run build
+```
+
+*デフォルトは `public/build/` に出力されます*
+
+# 以下、元のドキュメント
 
 ## About Laravel
 
