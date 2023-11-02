@@ -3,7 +3,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "npm run lint && vite build",
+    "lint": "eslint \"**/*.{ts,vue}\"",
+    "lint:fix": "eslint --fix \"**/*.{ts,vue}\"",
+    "format": "prettier --write \"**/*.{ts,vue,blade.php}\""
   },
   "devDependencies": {
     "@shufo/prettier-plugin-blade": "^1.13.3",
